@@ -1,0 +1,54 @@
+channel_maps:
+  background_class_idx: 0
+  default_label: None
+  input_dataset_class_2_idx_map:
+    background: 0
+    no damage: 1
+    minor damage: 2
+    major damage: 3
+    destroyed: 4
+    un-classified: 5
+    obscured: 5
+  output_class_2_idx_map:
+    background: 0
+    no damage: 1
+    minor damage: 2
+    major damage: 3
+    destroyed: 4
+    un-classified: 5
+  model_class_2_color_map:
+    background:
+      alpha: 0
+      blue: 0
+      green: 0
+      red: 0
+    destroyed:
+      alpha: 255
+      blue: 0
+      green: 0
+      red: 255
+    major damage:
+      alpha: 255
+      blue: 0
+      green: 128
+      red: 255
+    minor damage:
+      alpha: 255
+      blue: 0
+      green: 255
+      red: 255
+    no damage:
+      alpha: 255
+      blue: 0
+      green: 255
+      red: 0
+    un-classified:
+      alpha: 255
+      blue: 255
+      green: 0
+      red: 255
+  input_channels:
+    red: 0
+    green: 1
+    blue: 2
+    mask: 3

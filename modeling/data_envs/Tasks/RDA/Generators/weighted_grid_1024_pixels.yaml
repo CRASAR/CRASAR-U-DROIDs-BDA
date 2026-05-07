@@ -1,0 +1,32 @@
+location_strategy: "grid"
+location_parameters:
+  sample_generator_process_pool_size: 6
+  adjustment_buffer_distance_px: 0
+presentation_strategy: "weighted"
+presentation_strategy_parameters:
+  length: 4000
+  expected_class_balances:
+    Not Able To Determine: 1
+    Partial Flooding: 1
+    Partial Obstruction: 1
+    Partial Road Condition: 1
+    Particulate Partial: 1
+    Particulate Total: 1
+    Road Line: 1
+    Total Destruction: 1
+    Total Flooding: 1
+    Total Obstruction: 1
+  balance_monitor: "pixel"
+dataset_adaptor_parameters:
+  tile_x: 1024
+  tile_y: 1024
+  mask_x: 1024
+  mask_y: 1024
+  backend: "auto"
+  tile_scale_strategy: "pixel"
+  rescale_strategy: "none"
+  generate_adjusted_geoms: True
+annotator_parameters:
+  generate_adjusted_sample_locations: True
+masking_strategy_parameters:
+  road_width_pixels: 40

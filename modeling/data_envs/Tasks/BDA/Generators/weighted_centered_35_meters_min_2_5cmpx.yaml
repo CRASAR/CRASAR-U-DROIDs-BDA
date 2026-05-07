@@ -1,0 +1,27 @@
+location_strategy: "centered"
+location_parameters:
+  sample_generator_process_pool_size: 6
+  adjustment_buffer_distance_px: 326
+presentation_strategy: "weighted"
+presentation_strategy_parameters:
+  length: 4000
+  expected_class_balances:
+    no damage: 1
+    major damage: 1
+    minor damage: 1
+    destroyed: 1
+    un-classified: 1
+    obscured: 1
+dataset_adaptor_parameters:
+  tile_x: 35
+  tile_y: 35
+  min_gsd_x: 0.025 #025cm/px
+  min_gsd_y: 0.025 #025cm/px
+  backend: "auto"
+  mask_scale_strategy: "spatial"
+  tile_scale_strategy: "spatial"
+  rescale_strategy: "interpolate"
+  generate_adjusted_geoms: True
+annotator_parameters:
+  generate_adjusted_sample_locations: True
+  building_intersection_proportion_threshold: 0.0

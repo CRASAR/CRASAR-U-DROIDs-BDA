@@ -1,0 +1,107 @@
+name: "ADJBDA_UNet_v1"
+model: "ZampieriEtAl2018"
+task: "BDAADJ"
+channel_maps:
+  background_class_idx: 0
+  default_label: None
+  input_dataset_class_2_idx_map:
+    background: 0
+    destroyed: 4
+    major damage: 3
+    minor damage: 2
+    no damage: 1
+    un-classified: 5
+  model_class_2_color_map:
+    background:
+      alpha: 0
+      blue: 0
+      green: 0
+      red: 0
+    destroyed:
+      alpha: 255
+      blue: 0
+      green: 0
+      red: 255
+    major damage:
+      alpha: 255
+      blue: 0
+      green: 128
+      red: 255
+    minor damage:
+      alpha: 255
+      blue: 0
+      green: 255
+      red: 255
+    no damage:
+      alpha: 255
+      blue: 0
+      green: 255
+      red: 0
+    un-classified:
+      alpha: 255
+      blue: 255
+      green: 0
+      red: 255
+  output_class_2_idx_map:
+    background: 0
+    destroyed: 4
+    major damage: 3
+    minor damage: 2
+    no damage: 1
+    un-classified: 5
+input:
+  channels:
+    red: 0
+    green: 1
+    blue: 2
+    mask: 3
+  normalized_inputs: true
+  validation_parameters:
+    validation_monitor: "val_ortho_inference_avg_IoU"
+    validation_monitor_mode: "max"
+    validation_checkpoint_save_top_k: 3
+    validation_reduce_lr_on_plateau_patience: 50
+    validation_reduce_lr_on_plateau_cooldown: 5
+    validation_sample_generation_strategy: "center"
+  training_parameters:
+    samples_per_epoch: 8000
+    adj_teacher_force: true
+    gradient_clip_val: 100.0
+    alpha: 0.25
+    batch_size: 4
+    gamma: 2
+    grad_accumulation: 16
+    l1_reg: 1.0e-07
+    l2_reg: 1.0e-08
+    log_images_every_n_steps: 100
+    mask_x: 2048
+    mask_y: 2048
+    alignment_map:
+      x_dim: 32
+      y_dim: 32
+    max_epochs: 100
+    optimizer_parameters:
+      learning_rate: 5.0e-4
+    output_class_weights:
+      background: 1.0e-06
+      destroyed: 23.706
+      major damage: 9.852
+      minor damage: 3.193
+      no damage: 1.95
+      un-classified: 35.23
+    adjustment_class_loss_weights:
+      background: 1.0e-06
+      destroyed: 0.25
+      major damage: 0.5
+      minor damage: 1.0
+      no damage: 1.0
+      un-classified: 0.0
+    tile_x: 2048
+    tile_y: 2048
+    loss_parameters:
+      loss: [["cross entropy", 1.0]]
+      gamma: 2
+      alpha: 0.25
+      bins: 10
+      momentum: 0.9
+      smooth: 1.0e-06

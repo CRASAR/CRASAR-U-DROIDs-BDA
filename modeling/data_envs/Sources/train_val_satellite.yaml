@@ -1,0 +1,12 @@
+train:
+  suas: False
+  crewed: False
+  satellite: True
+validation:
+  suas: False
+  crewed: False
+  satellite: True
+test:
+  suas: True
+  crewed: False
+  satellite: False

@@ -1,0 +1,19 @@
+location_strategy: "random"
+location_parameters:
+  sample_acceptance_persistence: 25
+presentation_strategy: "most_recently_observed"
+presentation_strategy_parameters:
+  length: 16
+dataset_adaptor_parameters:
+  tile_x: 2048
+  tile_y: 2048
+  mask_x: 2048
+  mask_y: 2048
+  backend: "auto"
+  mask_scale_strategy: "pixel"
+  tile_scale_strategy: "pixel"
+  rescale_strategy: "none"
+  generate_adjusted_geoms: True
+annotator_parameters:
+  generate_adjusted_sample_locations: True
+  building_intersection_proportion_threshold: 0.0

@@ -1,0 +1,83 @@
+name: "RDA_UperNet_NoPretrainTrain_CCE_Full"
+model_type: "MaskedEncoderDecoder"
+encoder_type: "ScaleMAE"
+decoder_type: "UperNet"
+task: "RDA"
+input:
+  normalized_inputs: true
+  mask_input: false
+  road_line_buffer_width_pixels: 40
+  road_line_segment_length_pixels: 40
+training:
+  training_parameters:
+    gradient_clip_val: 10.0
+    alpha: 0.25
+    batch_size: 1
+    gamma: 2
+    grad_accumulation: 8
+    l1_reg: 1.0e-06
+    l2_reg: 1.0e-05
+    log_images_every_n_steps: 1000
+    output_class_weights_strategy: "ipw"
+    normalize_weights: False
+    mask_x: 1024
+    mask_y: 1024
+    max_epochs: 100
+    optimizer_parameters:
+      name: "AdamW"
+      lr: 0.0005
+      weight_decay: 0.00001
+    output_class_weights:
+      Background: 1.0e-06
+      Not Able To Determine: 45
+      Partial Flooding: 45
+      Partial Obstruction: 45
+      Partial Road Condition: 45
+      Particulate Partial: 45
+      Particulate Total: 35
+      Road Line: 1
+      Total Destruction: 35
+      Total Flooding: 35
+      Total Obstruction: 35
+    samples_per_epoch: 4000
+    tile_x: 1024
+    tile_y: 1024
+    loss_parameters:
+      loss: [["cross entropy", 1.0]]
+      gamma: 2
+      alpha: 0.25
+      bins: 10
+      momentum: 0.9
+      smooth: 1.0e-06
+validation:
+  validation_parameters:
+    batch_size: 1
+    validation_monitor: "val_macro_iou"
+    validation_monitor_mode: "max"
+    validation_checkpoint_save_top_k: 1
+    validation_reduce_lr_on_plateau_cooldown: 3
+    validation_reduce_lr_on_plateau_patience: 3
+model_parameters:
+  decoder_parameters:
+    in_channels: [1024, 1024, 1024, 1024]
+    in_index: [0,1,2,3]
+    pool_scales: [1,2,3,6]
+    channels: 1024
+    dropout_ratio: 0.1
+    norm_cfg:
+      type: 'IN'
+      requires_grad: True
+    align_corners: False
+    out_indicies: [2,9,16,23]
+  n_cls: 11
+  normalization: "vit"
+  encoder_parameters:
+    backbone: "scalemae"
+    normalization: "vit"
+    vit_model: vit_large_patch16
+    n_heads: 16
+    n_layers: 24
+    patch_size: 16
+    drop_path_rate: 0.1
+    dropout: 0.0
+    global_pool: False

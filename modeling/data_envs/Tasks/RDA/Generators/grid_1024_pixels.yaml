@@ -1,0 +1,18 @@
+location_strategy: "grid"
+location_parameters:
+  sample_generator_process_pool_size: 6
+  adjustment_buffer_distance_px: 0
+presentation_strategy: "indexed"
+dataset_adaptor_parameters:
+  tile_x: 1024
+  tile_y: 1024
+  mask_x: 1024
+  mask_y: 1024
+  backend: "auto"
+  tile_scale_strategy: "pixel"
+  rescale_strategy: "none"
+  generate_adjusted_geoms: True
+annotator_parameters:
+  generate_adjusted_sample_locations: True
+masking_strategy_parameters:
+  road_width_pixels: 40

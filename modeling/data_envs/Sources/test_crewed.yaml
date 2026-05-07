@@ -1,0 +1,4 @@
+test:
+  suas: False
+  crewed: True
+  satellite: False

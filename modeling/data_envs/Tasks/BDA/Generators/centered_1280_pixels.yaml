@@ -1,0 +1,18 @@
+location_strategy: "centered"
+location_parameters:
+  sample_generator_process_pool_size: 6
+  adjustment_buffer_distance_px: 326
+presentation_strategy: "indexed"
+dataset_adaptor_parameters:
+  tile_x: 1280
+  tile_y: 1280
+  mask_x: 1280
+  mask_y: 1280
+  backend: "auto"
+  mask_scale_strategy: "pixel"
+  tile_scale_strategy: "pixel"
+  rescale_strategy: "interpolate"
+  generate_adjusted_geoms: True
+annotator_parameters:
+  generate_adjusted_sample_locations: True
+  building_intersection_proportion_threshold: 0.0
